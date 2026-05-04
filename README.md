@@ -1,5 +1,9 @@
 # TRACE
 
+<p align="center">
+  <img src="assets/main_architecture.png" alt="TRACE architecture" width="100%">
+</p>
+
 TRACE is an ECG foundation-interface framework for diagnosis refinement and diagnosis-informed report control. The repository contains the core training, evaluation, and inference scripts for PTB-XL, CPSC2018, and Ningbo.
 
 ## Installation
