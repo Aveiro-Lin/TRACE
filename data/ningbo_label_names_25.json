@@ -1,0 +1,39 @@
+{
+  "diagnostic": [
+    "Bundle branch block (BBB)",
+    "Pacing rhythm (PR)",
+    "Left axis deviation (LAD)",
+    "Right axis deviation (RAD)",
+    "T wave inversion (TInv)",
+    "Prolonged QT interval (LQT)",
+    "Atrial flutter (AFL)",
+    "Q wave abnormality (QAb)",
+    "T wave abnormality (TAb)",
+    "Prolonged PR interval (LPR)",
+    "Low QRS voltages (LQRSV)",
+    "First-degree atrioventricular block (IAVB)",
+    "Premature atrial or supraventricular beats (PAC/SVPB)",
+    "Poor R wave progression (PRWP)",
+    "Sinus bradycardia (SB)",
+    "Bradycardia (Brady)",
+    "Sinus rhythm (NSR)",
+    "Sinus tachycardia (STach)",
+    "Premature ventricular beats (PVC/VPB)",
+    "Sinus arrhythmia (SA)",
+    "Left anterior fascicular block (LAnFB)",
+    "Nonspecific intraventricular conduction disorder (NSIVCB)",
+    "Incomplete right bundle branch block (IRBBB)",
+    "Right bundle branch block (CRBBB/RBBB)",
+    "Left bundle branch block (CLBBB/LBBB)"
+  ],
+  "notes": {
+    "source": "Recovered from the PhysioNet/CinC Challenge 2021 Ningbo SNOMED mappings and matched to the local 25-dimensional one-hot order by class prevalence.",
+    "local_order": "Matches data/ningbo/*_index.csv LABEL vectors.",
+    "merged_classes": {
+      "PAC/SVPB": ["284470004", "63593006"],
+      "PVC/VPB": ["427172004", "17338001"],
+      "CRBBB/RBBB": ["713427006", "59118001"],
+      "CLBBB/LBBB": ["733534002", "164909002"]
+    }
+  }
+}
