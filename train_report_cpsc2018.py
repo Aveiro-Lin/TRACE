@@ -4,7 +4,6 @@
 
 
 import os
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "2")
 os.environ["HF_DATASETS_OFFLINE"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -45,8 +44,9 @@ set_seed(42)
 
 print(f"CUDA_VISIBLE_DEVICES: {os.environ.get('CUDA_VISIBLE_DEVICES')}")
 print(f"PyTorch sees {torch.cuda.device_count()} GPU(s)")
-print(f"Current device index: {torch.cuda.current_device()}")
-print(f"Device name: {torch.cuda.get_device_name(torch.cuda.current_device())}")
+if torch.cuda.is_available():
+    print(f"Current device index: {torch.cuda.current_device()}")
+    print(f"Device name: {torch.cuda.get_device_name(torch.cuda.current_device())}")
 
 
 # In[ ]:

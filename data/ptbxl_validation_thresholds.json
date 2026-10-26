@@ -1,0 +1,29 @@
+{
+  "protocol": {
+    "main_threshold": 0.5,
+    "selection_rule": "Thresholds were selected on the PTB-XL validation split only and are applied unchanged to external cohorts."
+  },
+  "datasets": {
+    "PTB-XL": {
+      "class_names": [
+        "CD",
+        "HYP",
+        "MI",
+        "NORM",
+        "STTC"
+      ],
+      "global_val": {
+        "threshold": 0.35
+      },
+      "per_class_val": {
+        "thresholds": [
+          0.5,
+          0.15,
+          0.35,
+          0.3,
+          0.3
+        ]
+      }
+    }
+  }
+}

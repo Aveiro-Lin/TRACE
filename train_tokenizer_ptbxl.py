@@ -4,7 +4,6 @@
 
 
 import os
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")
 
 import pandas as pd
 import numpy as np
@@ -27,8 +26,9 @@ from tqdm import tqdm
 
 print(f"CUDA_VISIBLE_DEVICES: {os.environ.get('CUDA_VISIBLE_DEVICES')}")
 print(f"PyTorch sees {torch.cuda.device_count()} GPU(s)")
-print(f"Current device index: {torch.cuda.current_device()}")
-print(f"Device name: {torch.cuda.get_device_name(torch.cuda.current_device())}")
+if torch.cuda.is_available():
+    print(f"Current device index: {torch.cuda.current_device()}")
+    print(f"Device name: {torch.cuda.get_device_name(torch.cuda.current_device())}")
 
 
 # In[ ]:

@@ -1,0 +1,5 @@
+-r requirements.txt
+
+# Needed only to reconstruct an Anzhen release package from restricted PDF
+# source material. Model training on the released arrays does not require it.
+PyMuPDF==1.26.1

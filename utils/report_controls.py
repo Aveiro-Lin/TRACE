@@ -14,6 +14,7 @@ from torch.cuda.amp import GradScaler, autocast
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 
+from utils.checkpoint_compat import remap_legacy_foundation_encoder_keys
 from utils.trace_tokenizer import Tokenizer
 from utils.downstream_trace import (
     CPSC2018_CLASSES,
@@ -348,6 +349,9 @@ class ReportControlClassifier(nn.Module):
         )
         checkpoint = torch.load(tokenizer_checkpoint, map_location='cpu')
         state_dict = checkpoint.get('model_state_dict', checkpoint.get('model', checkpoint))
+        state_dict, remapped_keys = remap_legacy_foundation_encoder_keys(state_dict)
+        if remapped_keys:
+            print(f'Remapped {remapped_keys} legacy tokenizer checkpoint keys.')
         msg = self.backbone.load_state_dict(state_dict, strict=False)
         if msg.missing_keys or msg.unexpected_keys:
             print('Tokenizer load info:', msg)
@@ -436,7 +440,8 @@ class DiagnosisProvider:
             quantize=quantize,
             freeze_backbone=True,
         )
-        self.model.load_state_dict(checkpoint['model_state_dict'])
+        model_state, _ = remap_legacy_foundation_encoder_keys(checkpoint['model_state_dict'])
+        self.model.load_state_dict(model_state)
         self.model.to(self.device)
         self.model.eval()
         for param in self.model.parameters():
@@ -704,7 +709,8 @@ def load_report_control_model(
         quantize=bool(args.get('use_quantized_latents', False)),
         freeze_backbone=True,
     )
-    model.load_state_dict(checkpoint['model_state_dict'])
+    model_state, _ = remap_legacy_foundation_encoder_keys(checkpoint['model_state_dict'])
+    model.load_state_dict(model_state)
     model.to(device)
     model.eval()
     return model, vocab, checkpoint

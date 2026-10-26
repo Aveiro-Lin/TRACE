@@ -15,12 +15,22 @@ python -m pip install --upgrade pip
 The tested setup uses PyTorch 2.5.1 with CUDA 11.8. Install the wheel that matches your local CUDA driver and package mirror:
 
 ```bash
-python -m pip install torch==2.5.1 torchvision torchaudio
+python -m pip install torch==2.5.1
 ```
 
 For a different CUDA version or CPU-only machine, replace this command with the official PyTorch installation command for your system.
 
 ## 3. Install TRACE dependencies
+
+Install the pinned environment from the repository root:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+The file includes the tested PyTorch version. If you installed the matching
+CUDA-specific PyTorch wheel in the previous step, pip will keep that
+installation. The expanded package list is shown below for reference:
 
 ```bash
 python -m pip install \
@@ -37,17 +47,26 @@ python -m pip install \
   scipy==1.15.3 \
   scikit-learn==1.1.1 \
   wfdb==4.1.2 \
+  neurokit2==0.2.10 \
   einops==0.8.1 \
+  einx==0.3.0 \
   x-transformers==1.42.11 \
   tensorboard==2.19.0 \
   matplotlib==3.10.0 \
   tqdm==4.67.1 \
   PyYAML==6.0.2 \
-  bert-score==0.3.12 \
+  pyarrow==19.0.0 \
+  bert-score==0.3.13 \
   pycocoevalcap==1.2
 ```
 
 `bert-score` is needed only when PTB-XL report metrics are evaluated with `--bertscore`. `pycocoevalcap` is optional because the TRACE metric script defaults to its local metric backend, but it is useful for reproducing COCO-style caption metrics.
+
+`neurokit2` is a regular TRACE dependency used by the public ECG preprocessing utilities. The released Anzhen arrays can be evaluated and adapted with `requirements.txt`. Rebuilding an Anzhen package from restricted PDF source material additionally requires PyMuPDF:
+
+```bash
+python -m pip install -r requirements-anzhen-build.txt
+```
 
 ## 4. Prepare model and data assets
 
@@ -95,6 +114,9 @@ python train_diagnosis_ckpt.py --help
 python eval_diagnosis_ptbxl.py --help
 python infer_report_ptbxl.py --help
 python eval_ptb_report_generation_metrics.py --help
+python evaluate_anzhen_external.py --help
+python finetune_anzhen_diagnosis.py --help
+python finetune_anzhen_report_control.py --help
 python -m py_compile train_report_ptbxl.py train_report_cpsc2018.py train_report_ningbo.py
 ```
 

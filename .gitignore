@@ -20,6 +20,7 @@ runs/
 wandb/
 tensorboard/
 outputs/
+results/
 tmp/
 temp/
 
@@ -28,6 +29,8 @@ data/*.npz
 data/*.pkl
 data/*.pickle
 data/generated_*
+data/anzhen_external/
+data/anzhen_derived/
 data/ptbxl_database.csv
 data/scp_statements.csv
 data/records*.npy
@@ -35,6 +38,7 @@ data/full_data.npy
 data/ningbo/data/
 
 ckpt/**/*.pt
+ckpt/**/*.pth
 ckpt/**/*.bin
 ckpt/**/*.safetensors
 ckpt/**/*.ckpt

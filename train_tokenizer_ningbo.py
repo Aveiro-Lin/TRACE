@@ -27,9 +27,6 @@ from tqdm import tqdm
 from utils.trace_tokenizer import Tokenizer
 
 
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "1")
-
-
 DEFAULT_NINGBO_ROOT = "data/ningbo"
 
 

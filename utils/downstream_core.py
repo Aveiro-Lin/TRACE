@@ -14,6 +14,7 @@ from torch.cuda.amp import GradScaler, autocast
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
 
+from utils.checkpoint_compat import remap_legacy_foundation_encoder_keys
 from utils.trace_tokenizer import Tokenizer
 
 PTBXL_SUPERCLASSES = ['CD', 'HYP', 'MI', 'NORM', 'STTC']
@@ -231,6 +232,9 @@ class TRACEDiagnosisClassifier(nn.Module):
         )
         checkpoint = torch.load(tokenizer_checkpoint, map_location='cpu')
         state_dict = checkpoint.get('model_state_dict', checkpoint.get('model', checkpoint))
+        state_dict, remapped_keys = remap_legacy_foundation_encoder_keys(state_dict)
+        if remapped_keys:
+            print(f'Remapped {remapped_keys} legacy tokenizer checkpoint keys.')
         msg = self.backbone.load_state_dict(state_dict, strict=False)
         if msg.missing_keys or msg.unexpected_keys:
             print('Tokenizer load info:', msg)

@@ -6,7 +6,6 @@ import json
 import os
 from pathlib import Path
 
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "3")
 os.environ["HF_DATASETS_OFFLINE"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"

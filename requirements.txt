@@ -1,0 +1,27 @@
+# Install the PyTorch wheel appropriate for the local CUDA driver first when
+# the default package-index build is not suitable.
+torch==2.5.1
+transformers==4.53.0
+datasets==3.6.0
+peft==0.15.2
+trl==0.19.0
+accelerate==1.8.1
+safetensors==0.5.3
+tokenizers==0.21.2
+sentencepiece==0.2.1
+numpy==1.26.4
+pandas==1.4.2
+scipy==1.15.3
+scikit-learn==1.1.1
+wfdb==4.1.2
+neurokit2==0.2.10
+einops==0.8.1
+einx==0.3.0
+x-transformers==1.42.11
+tensorboard==2.19.0
+matplotlib==3.10.0
+tqdm==4.67.1
+PyYAML==6.0.2
+pyarrow==19.0.0
+bert-score==0.3.13
+pycocoevalcap==1.2
